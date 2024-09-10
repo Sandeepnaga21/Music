@@ -100,31 +100,33 @@ class App extends Component {
 
   render() {
     const {searchInput, tracksList} = this.state
-    const SongsListCount = tracksList.length === 0
     const filteredTracks = tracksList.filter(eachTrack =>
-      eachTrack.name.includes(searchInput),
+      eachTrack.name.toLowerCase().includes(searchInput.toLowerCase()),
     )
+    const SongsListCount = tracksList.length === 0
+
     return (
       <div>
-        <div className="bg-container">
-          <div className="container">
-            <h1 className="heading">Ed Sheeran</h1>
-            <p className="about">Singer</p>
+        <div className='bg-container'>
+          <div className='container'>
+            <h1 className='heading'>Ed Sheeran</h1>
+            <p className='about'>Singer</p>
           </div>
         </div>
-        <div className="bg-color">
-          <div className="s-container">
-            <h1 className="heading">Songs Playlist</h1>
+        <div className='bg-color'>
+          <div className='s-container'>
+            <h1 className='heading'>Songs Playlist</h1>
             <input
-              type="search"
+              type='search'
               onChange={this.updateSearchInput}
-              className="input"
+              className='input'
+              placeholder='Search'
             />
           </div>
           {SongsListCount ? (
-            <p className="heading">No Songs Found</p>
+            <p className='heading'>No Songs Found</p>
           ) : (
-            <ul className="list">
+            <ul className='list'>
               {filteredTracks.map(eachTrack => (
                 <SongsList
                   songDetails={eachTrack}
